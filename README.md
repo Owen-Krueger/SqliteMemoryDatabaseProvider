@@ -91,13 +91,17 @@ var testClass = mock.CreateInstance<TestClass>();
 
 Although tests are short lived, it's still best practice to close database connections upon test completion.
 
-`SqliteMemoryDatabaseProvider` will automatically close its database connections when it's being disposed. The simplest ways to do this are to either set up your provider at the class level (like the example above) or scope the provider in your test to dispose when done by using the `using` keyword:
+`SqliteMemoryDatabaseProvider` will automatically close its database connections when it's being disposed. The simplest ways to do this are to either set up your provider at the class level or scope the provider in your test to dispose when done by using the `using` keyword:
+
+### Scope Provider
 
 ``` C#
 using var provider = new SqliteMemoryDatabaseProvider();
 ```
 
 When the test completes, the database connection will automatically be closed and disposed.
+
+### Class Level
 
 You can also set up the `SqliteMemoryDatabaseProvider` at the class level and call its `Dispose` method during test teardown:
 
