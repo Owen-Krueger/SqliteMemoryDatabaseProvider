@@ -20,7 +20,7 @@
     </ItemGroup>
     
     <ItemGroup>
-        <ProjectReference Include="..\EntityFramework.SqliteMemoryDatabaseProvider\EntityFramework.SqliteMemoryDatabaseProvider.csproj" />
+        <ProjectReference Include="..\src\EntityFramework.SqliteMemoryDatabaseProvider.csproj" />
     </ItemGroup>
 
 </Project>
