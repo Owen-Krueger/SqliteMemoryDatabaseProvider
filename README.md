@@ -28,7 +28,6 @@ using var provider = new SqliteMemoryDatabaseProvider();
 var mockDatabase = provider.CreateDatabase<TestEntities>(x =>
     x.TestModels.Add(testRecord);
 );
-await mockDatabase.SaveChangesAsync();
 mock.Use<ITestEntities>(mockDatabase);
 var testClass = mock.CreateInstance<TestClass>();
 ```
@@ -36,20 +35,33 @@ var testClass = mock.CreateInstance<TestClass>();
 `SqliteMemoryDatabaseProvider` can also be used at a class level for your tests:
 
 ``` C#
-private SqliteMemoryDatabaseProvider SqliteMemoryDatabaseProvider;
+private SqliteMemoryDatabaseProvider sqliteMemoryDatabaseProvider;
 
 [SetUp]
 public void SetUp()
 {
-    SqliteMemoryDatabaseProvider = new SqliteMemoryDatabaseProvider();
+    sqliteMemoryDatabaseProvider = new SqliteMemoryDatabaseProvider();
 }
 
 [TearDown]
 public void TearDown()
 {
-    SqliteMemoryDatabaseProvider.Dispose();
+    sqliteMemoryDatabaseProvider.Dispose();
 }
 ```
+
+This can help simplify your tests like so:
+
+``` C# 
+var mock = new AutoMocker();
+var mockDatabase = sqliteMemoryDatabaseProvider.CreateDatabase<TestEntities>(x =>
+    x.TestModels.Add(testRecord);
+);
+mock.Use<ITestEntities>(mockDatabase);
+var testClass = mock.CreateInstance<TestClass>();
+```
+
+### Additional Parameters
 
 If your entity needs additional parameters, an overload is available to provide them:
 
@@ -90,17 +102,17 @@ When the test completes, the database connection will automatically be closed an
 You can also set up the `SqliteMemoryDatabaseProvider` at the class level and call its `Dispose` method during test teardown:
 
 ``` C#
-private SqliteMemoryDatabaseProvider SqliteMemoryDatabaseProvider;
+private SqliteMemoryDatabaseProvider sqliteMemoryDatabaseProvider;
 
 [SetUp]
 public void SetUp()
 {
-    SqliteMemoryDatabaseProvider = new SqliteMemoryDatabaseProvider();
+    sqliteMemoryDatabaseProvider = new SqliteMemoryDatabaseProvider();
 }
 
 [TearDown]
 public void TearDown()
 {
-    SqliteMemoryDatabaseProvider.Dispose();
+    sqliteMemoryDatabaseProvider.Dispose();
 }
 ```
