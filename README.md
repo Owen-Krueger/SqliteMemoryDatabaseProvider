@@ -4,7 +4,7 @@ According to [Microsoft's documentation](https://learn.microsoft.com/en-us/ef/co
 
 ## Create Database
 
-You can set up a new `SqliteMemoryDatabaseProvider` and call `CreateDatase`. This will set up the database in-memory, but that's it. `SqliteMemoryDatabaseProvider` needs to be instantiated so it can open up a new database connection using in-memory SQLite.
+You can set up a new `SqliteMemoryDatabaseProvider` and call `CreateDatabase`. This will set up the database in-memory to be used in your test. `SqliteMemoryDatabaseProvider` needs to be instantiated so it can open up a new database connection using in-memory SQLite.
 
 An example of this in a test:
 
