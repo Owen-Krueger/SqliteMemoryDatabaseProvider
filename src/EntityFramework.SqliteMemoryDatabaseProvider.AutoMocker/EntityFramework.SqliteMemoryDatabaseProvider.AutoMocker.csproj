@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>SQLite Memory Database Provider AutoMocker</Title>
+        <Description>For creating in-memory SQLite databases to be used within unit tests using AutoMocker.</Description>
+        <Copyright>https://github.com/Owen-Krueger/EntityFramework.SqliteMemoryDatabaseProvider/blob/main/LICENSE</Copyright>
+        <PackageProjectUrl>https://github.com/Owen-Krueger/EntityFramework.SqliteMemoryDatabaseProvider</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Owen-Krueger/EntityFramework.SqliteMemoryDatabaseProvider</RepositoryUrl>
+        <PackageReleaseNotes>
+            1.0.0 - Created CreateInMemoryDatabase for Automocker.
+        </PackageReleaseNotes>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Moq.AutoMock" Version="3.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\EntityFramework.SqliteMemoryDatabaseProvider\EntityFramework.SqliteMemoryDatabaseProvider.csproj" />
+    </ItemGroup>
+
+</Project>

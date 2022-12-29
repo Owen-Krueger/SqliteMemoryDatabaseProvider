@@ -1,4 +1,3 @@
-using Moq.AutoMock;
 using NUnit.Framework;
 
 namespace EntityFramework.SqliteMemoryDatabaseProvider.UnitTests;
@@ -6,7 +5,7 @@ namespace EntityFramework.SqliteMemoryDatabaseProvider.UnitTests;
 internal class MemoryDatabaseProviderTests
 {
     private readonly TestModel testRecord = new() { OtherProperty = "Test" };
-    private SqliteMemoryDatabaseProvider sqliteMemoryDatabaseProvider;
+    private SqliteMemoryDatabaseProvider? sqliteMemoryDatabaseProvider;
 
     [SetUp]
     public void SetUp()
@@ -17,13 +16,13 @@ internal class MemoryDatabaseProviderTests
     [TearDown]
     public void TearDown()
     {
-        sqliteMemoryDatabaseProvider.Dispose();
+        sqliteMemoryDatabaseProvider?.Dispose();
     }
 
     [Test]
     public async Task CreateDatabase_NoArguments_DatabaseReturned()
     {
-        var mock = new AutoMocker();
+        var mock = new Moq.AutoMock.AutoMocker();
         using var provider = new SqliteMemoryDatabaseProvider();
         var database = provider.CreateDatabase<TestEntities>();
         database.TestModels.Add(testRecord);
@@ -31,7 +30,7 @@ internal class MemoryDatabaseProviderTests
         mock.Use<ITestEntities>(database);
         var testClass = mock.CreateInstance<TestClass>();
         var result = testClass.RecordExists(testRecord.OtherProperty);
-        Assert.IsTrue(result);
+        Assert.That(result, Is.True);
     }
 
     [Test]
@@ -43,7 +42,7 @@ internal class MemoryDatabaseProviderTests
             x.TestModels.Add(testRecord);
         });
         var record = database.TestModels.First();
-        Assert.AreEqual(testRecord.OtherProperty, record.OtherProperty);
+        Assert.That(record.OtherProperty, Is.EqualTo(testRecord.OtherProperty));
     }
 
     [TestCase("A")]
@@ -55,37 +54,37 @@ internal class MemoryDatabaseProviderTests
         var database = provider.CreateDatabase<TestEntities>();
         database.TestModels.Add(new TestModel() { OtherProperty = property });
         await database.SaveChangesAsync();
-        Assert.AreEqual(1, database.TestModels.Count());
-        Assert.AreEqual(property, database.TestModels.First().OtherProperty);
+        Assert.That(database.TestModels.Count(), Is.EqualTo(1));
+        Assert.That(database.TestModels.First().OtherProperty, Is.EqualTo(property));
     }
 
     [Test]
     public void CreateDatabaseUsingClassProvider_DatabaseA_IndependentFromDatabaseB()
     {
-        var database = sqliteMemoryDatabaseProvider.CreateDatabase<TestEntities>(x =>
+        var database = sqliteMemoryDatabaseProvider?.CreateDatabase<TestEntities>(x =>
             x.TestModels.Add(testRecord)
         );
-        Assert.AreEqual(1, database.TestModels.Count());
-        var record = database.TestModels.First();
-        Assert.AreEqual(testRecord.OtherProperty, record.OtherProperty);
+        Assert.That(database?.TestModels.Count(), Is.EqualTo(1));
+        var record = database?.TestModels.First();
+        Assert.That(record?.OtherProperty, Is.EqualTo(testRecord.OtherProperty));
     }
 
     [Test]
     public void CreateDatabaseUsingClassProvider_DatabaseB_IndependentFromDatabaseA()
     {
         var testModel = new TestModel() { OtherProperty = "DifferentFromA" };
-        var database = sqliteMemoryDatabaseProvider.CreateDatabase<TestEntities>(x =>
+        var database = sqliteMemoryDatabaseProvider?.CreateDatabase<TestEntities>(x =>
             x.TestModels.Add(testModel)
         );
-        Assert.AreEqual(1, database.TestModels.Count());
-        var record = database.TestModels.First();
-        Assert.AreEqual(testModel.OtherProperty, record.OtherProperty);
+        Assert.That(database?.TestModels.Count(), Is.EqualTo(1));
+        var record = database?.TestModels.First();
+        Assert.That(record?.OtherProperty, Is.EqualTo(testModel.OtherProperty));
     }
 
     [Test]
     public async Task CreateDatabase_DatabaseWithAdditionalParameters_ParametersPassedToConstructor()
     {
-        var mock = new AutoMocker();
+        var mock = new Moq.AutoMock.AutoMocker();
         var testModelWithDate = new TestModelWithDate() { Date = DateTimeOffset.Now };
         using var provider = new SqliteMemoryDatabaseProvider();
         var dateTimeConverterMock = mock.GetMock<IDateTimeConverter>();
@@ -93,18 +92,25 @@ internal class MemoryDatabaseProviderTests
         database.TestModels.Add(testModelWithDate);
         await database.SaveChangesAsync();
         var record = database.TestModels.First();
-        Assert.AreEqual(testModelWithDate.Date, record.Date);
+        Assert.That(record.Date, Is.EqualTo(testModelWithDate.Date));
     }
 
     [Test]
     public void CreateDatabase_DatabaseWithAdditionalParametersAndAction_ParametersPassedToConstructor()
     {
-        var mock = new AutoMocker();
+        var mock = new Moq.AutoMock.AutoMocker();
         var testModelWithDate = new TestModelWithDate() { Date = DateTimeOffset.Now };
         using var provider = new SqliteMemoryDatabaseProvider();
         var dateTimeConverterMock = mock.GetMock<IDateTimeConverter>();
         var database = provider.CreateDatabase<ComplexTestEntities>(x => x.TestModels.Add(testModelWithDate), dateTimeConverterMock.Object);
         var record = database.TestModels.First();
-        Assert.AreEqual(testModelWithDate.Date, record.Date);
+        Assert.That(record.Date, Is.EqualTo(testModelWithDate.Date));
+    }
+
+    [Test]
+    public void CreateDatabase_ParametersMissing_MissingMethodExceptionThrown()
+    {
+        using var provider = new SqliteMemoryDatabaseProvider();
+        Assert.Throws<MissingMethodException>(() => provider.CreateDatabase<ComplexTestEntities>());
     }
 }
