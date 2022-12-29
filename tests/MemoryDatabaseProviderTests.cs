@@ -108,9 +108,9 @@ internal class MemoryDatabaseProviderTests
     }
 
     [Test]
-    public void CreateDatabase_ParametersMissing_MissingMethodExceptionThrown()
+    public void CreateDatabase_ParametersMissing_DatabaseCreationExceptionThrown()
     {
         using var provider = new SqliteMemoryDatabaseProvider();
-        Assert.Throws<MissingMethodException>(() => provider.CreateDatabase<ComplexTestEntities>());
+        Assert.Throws<DatabaseCreationException>(() => provider.CreateDatabase<ComplexTestEntities>());
     }
 }

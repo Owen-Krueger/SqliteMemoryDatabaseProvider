@@ -15,6 +15,7 @@ public static class AutoMockerExtensions
     /// <param name="mock">The mock that will use the in-memory database.</param>
     /// <param name="additionalParams">Additional parameters to use when creating the database instance.</param>
     /// <returns>The created database.</returns>
+    /// <exception cref="DatabaseCreationException">Cannot create new database. See inner exception for details.</exception>
     public static TImplementation CreateInMemoryDatabase<TInterface, TImplementation>(this Moq.AutoMock.AutoMocker mock, params object[] additionalParams)
         where TInterface : class
         where TImplementation : DbContext, TInterface
@@ -31,6 +32,7 @@ public static class AutoMockerExtensions
     /// <param name="afterCreation">Optional. Actions to do after the database is created.</param>
     /// <param name="additionalParams">Additional parameters to use when creating the database instance.</param>
     /// <returns>The created database.</returns>
+    /// <exception cref="DatabaseCreationException">Cannot create new database. See inner exception for details.</exception>
     public static TImplementation CreateInMemoryDatabase<TInterface, TImplementation>(this Moq.AutoMock.AutoMocker mock, Action<TImplementation>? afterCreation = null, params object[] additionalParams)
         where TInterface : class
         where TImplementation : DbContext, TInterface
