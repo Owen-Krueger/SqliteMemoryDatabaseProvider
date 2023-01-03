@@ -1,3 +1,5 @@
+using AutoFixture;
+using AutoFixture.AutoMoq;
 using NUnit.Framework;
 
 namespace EntityFramework.SqliteMemoryDatabaseProvider.UnitTests;
@@ -6,11 +8,13 @@ internal class MemoryDatabaseProviderTests
 {
     private readonly TestModel testRecord = new() { OtherProperty = "Test" };
     private SqliteMemoryDatabaseProvider? sqliteMemoryDatabaseProvider;
+    private IFixture fixture;
 
     [SetUp]
     public void SetUp()
     {
         sqliteMemoryDatabaseProvider = new SqliteMemoryDatabaseProvider();
+        fixture = new Fixture().Customize(new AutoMoqCustomization());
     }
 
     [TearDown]
@@ -32,7 +36,7 @@ internal class MemoryDatabaseProviderTests
         var result = testClass.RecordExists(testRecord.OtherProperty);
         Assert.That(result, Is.True);
     }
-
+    
     [Test]
     public void CreateDatabase_RowsAddedInAction_RowsPresentAfterCreation()
     {
@@ -112,5 +116,101 @@ internal class MemoryDatabaseProviderTests
     {
         using var provider = new SqliteMemoryDatabaseProvider();
         Assert.Throws<DatabaseCreationException>(() => provider.CreateDatabase<ComplexTestEntities>());
+    }
+    
+    [Test]
+    public async Task CreateDatabase_DateTimeOffsetWithConverter_DateConverted()
+    {
+        using var provider = new SqliteMemoryDatabaseProvider();
+        var database = provider.CreateDatabase<TestEntities>();
+        List<TestModel> models = new()
+        {
+            fixture.Build<TestModel>().With(x => x.Date, DateTimeOffset.Now.AddDays(-1)).Create(),
+            fixture.Build<TestModel>().With(x => x.Date, DateTimeOffset.Now).Create(),
+        };
+        database.TestModels.AddRange(models);
+        await database.SaveChangesAsync();
+        var records = database.TestModels.OrderByDescending(x => x.Date).ToList();
+        Assert.That(records, Is.Not.Empty);
+        Assert.Multiple(() =>
+        {
+            Assert.That(records[0], Is.EqualTo(models[1]));
+            Assert.That(records[1], Is.EqualTo(models[0]));
+        });
+    }
+    
+    [Test]
+    public async Task CreateDatabase_DateTimeOffsetWithoutConverter_NotSupportedExceptionThrown()
+    {
+        using var provider = new SqliteMemoryDatabaseProvider();
+        var database = provider.CreateDatabase<TestEntities>(false);
+        var models = fixture.CreateMany<TestModel>();
+        database.TestModels.AddRange(models);
+        await database.SaveChangesAsync();
+        Assert.Throws<NotSupportedException>(() => database.TestModels.OrderByDescending(x => x.Date).ToList());
+    }
+    
+    [Test]
+    public async Task CreateDatabase_DecimalWithConverter_DecimalConverted()
+    {
+        using var provider = new SqliteMemoryDatabaseProvider();
+        var database = provider.CreateDatabase<TestEntities>();
+        List<TestModel> models = new()
+        {
+            fixture.Build<TestModel>().With(x => x.Decimal, -6541m).Create(),
+            fixture.Build<TestModel>().With(x => x.Decimal, 9846).Create(),
+        };
+        database.TestModels.AddRange(models);
+        await database.SaveChangesAsync();
+        var records = database.TestModels.OrderByDescending(x => x.Decimal).ToList();
+        Assert.That(records, Is.Not.Empty);
+        Assert.Multiple(() =>
+        {
+            Assert.That(records[0], Is.EqualTo(models[1]));
+            Assert.That(records[1], Is.EqualTo(models[0]));
+        });
+    }
+    
+    [Test]
+    public async Task CreateDatabase_DecimalWithoutConverter_NotSupportedExceptionThrown()
+    {
+        using var provider = new SqliteMemoryDatabaseProvider();
+        var database = provider.CreateDatabase<TestEntities>(false);
+        var models = fixture.CreateMany<TestModel>();
+        database.TestModels.AddRange(models);
+        await database.SaveChangesAsync();
+        Assert.Throws<NotSupportedException>(() => database.TestModels.OrderByDescending(x => x.Decimal).ToList());
+    }
+    
+    [Test]
+    public async Task CreateDatabase_TimespanWithConverter_DateConverted()
+    {
+        using var provider = new SqliteMemoryDatabaseProvider();
+        var database = provider.CreateDatabase<TestEntities>();
+        List<TestModel> models = new()
+        {
+            fixture.Build<TestModel>().With(x => x.TimeSpan, TimeSpan.FromDays(-1)).Create(),
+            fixture.Build<TestModel>().With(x => x.TimeSpan, new TimeSpan()).Create(),
+        };
+        database.TestModels.AddRange(models);
+        await database.SaveChangesAsync();
+        var records = database.TestModels.OrderByDescending(x => x.TimeSpan).ToList();
+        Assert.That(records, Is.Not.Empty);
+        Assert.Multiple(() =>
+        {
+            Assert.That(records[0], Is.EqualTo(models[1]));
+            Assert.That(records[1], Is.EqualTo(models[0]));
+        });
+    }
+    
+    [Test]
+    public async Task CreateDatabase_TimespanWithoutConverter_NotSupportedExceptionThrown()
+    {
+        using var provider = new SqliteMemoryDatabaseProvider();
+        var database = provider.CreateDatabase<TestEntities>(false);
+        var models = fixture.CreateMany<TestModel>();
+        database.TestModels.AddRange(models);
+        await database.SaveChangesAsync();
+        Assert.Throws<NotSupportedException>(() => database.TestModels.OrderByDescending(x => x.TimeSpan).ToList());
     }
 }
