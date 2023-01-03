@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EntityFramework.SqliteMemoryDatabaseProvider;
+namespace SqliteMemoryDatabaseProvider;
 
 /// <summary>
 /// Provides value converters for SQLite types.

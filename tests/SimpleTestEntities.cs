@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace EntityFramework.SqliteMemoryDatabaseProvider.UnitTests;
+namespace SqliteMemoryDatabaseProvider.UnitTests;
 
 internal interface ITestEntities
 {

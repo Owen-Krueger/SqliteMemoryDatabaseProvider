@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{FD55EDE4-D
 		LICENSE = LICENSE
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.SqliteMemoryDatabaseProvider.UnitTests", "tests\EntityFramework.SqliteMemoryDatabaseProvider.UnitTests.csproj", "{A5CBCD79-F25C-4856-BA80-CB45BBE82564}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqliteMemoryDatabaseProvider.UnitTests", "tests\SqliteMemoryDatabaseProvider.UnitTests.csproj", "{A5CBCD79-F25C-4856-BA80-CB45BBE82564}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9DE6B33B-4350-4D02-A10C-2BE0727E3B17}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{66D072D2-5C23-41B3-9C53-F3EF734DE8E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.SqliteMemoryDatabaseProvider.AutoMocker", "src\EntityFramework.SqliteMemoryDatabaseProvider.AutoMocker\EntityFramework.SqliteMemoryDatabaseProvider.AutoMocker.csproj", "{0569A50E-0228-4E20-9500-90A31EE87BE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqliteMemoryDatabaseProvider.AutoMocker", "src\SqliteMemoryDatabaseProvider.AutoMocker\SqliteMemoryDatabaseProvider.AutoMocker.csproj", "{0569A50E-0228-4E20-9500-90A31EE87BE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.SqliteMemoryDatabaseProvider", "src\EntityFramework.SqliteMemoryDatabaseProvider\EntityFramework.SqliteMemoryDatabaseProvider.csproj", "{47D996FE-ED1A-45BA-ACD7-BE59F490C223}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqliteMemoryDatabaseProvider", "src\SqliteMemoryDatabaseProvider\SqliteMemoryDatabaseProvider.csproj", "{47D996FE-ED1A-45BA-ACD7-BE59F490C223}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

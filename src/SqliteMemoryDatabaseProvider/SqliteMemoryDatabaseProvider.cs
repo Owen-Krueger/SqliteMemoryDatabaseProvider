@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace EntityFramework.SqliteMemoryDatabaseProvider;
+namespace SqliteMemoryDatabaseProvider;
 
 /// <summary>
 /// Provider that will spin up in-memory databases for testing.
