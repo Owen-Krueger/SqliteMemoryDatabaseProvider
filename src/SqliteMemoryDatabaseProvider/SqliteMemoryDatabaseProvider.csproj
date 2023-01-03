@@ -6,11 +6,11 @@
         <Nullable>enable</Nullable>
         <Title>SQLite Memory Database Provider</Title>
         <Authors>Owen Krueger</Authors>
-        <RootNamespace>EntityFramework.SqliteMemoryDatabaseProvider</RootNamespace>
+        <RootNamespace>SqliteMemoryDatabaseProvider</RootNamespace>
         <Description>For creating in-memory SQLite databases to be used within unit tests.</Description>
-        <PackageProjectUrl>https://github.com/Owen-Krueger/EntityFramework.SqliteMemoryDatabaseProvider</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/Owen-Krueger/EntityFramework.SqliteMemoryDatabaseProvider/blob/main/LICENSE</PackageLicenseUrl>
-        <RepositoryUrl>https://github.com/Owen-Krueger/EntityFramework.SqliteMemoryDatabaseProvider</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider/blob/main/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider</RepositoryUrl>
         <PackageReleaseNotes>
             1.0.0 - Created SqliteMemoryDatabaseProvider.
         </PackageReleaseNotes>

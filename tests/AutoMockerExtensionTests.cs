@@ -1,7 +1,7 @@
-using EntityFramework.SqliteMemoryDatabaseProvider.AutoMocker;
+using SqliteMemoryDatabaseProvider.AutoMocker;
 using NUnit.Framework;
 
-namespace EntityFramework.SqliteMemoryDatabaseProvider.UnitTests;
+namespace SqliteMemoryDatabaseProvider.UnitTests;
 
 public class AutoMockerExtensionTests
 {

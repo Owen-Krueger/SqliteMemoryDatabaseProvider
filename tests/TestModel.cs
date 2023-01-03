@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EntityFramework.SqliteMemoryDatabaseProvider.UnitTests;
+namespace SqliteMemoryDatabaseProvider.UnitTests;
 
 [Table("TestTable")]
 internal class TestModel

@@ -7,7 +7,7 @@
 
         <IsPackable>false</IsPackable>
 
-        <RootNamespace>EntityFramework.SqliteMemoryDatabaseProvider.UnitTests</RootNamespace>
+        <RootNamespace>SqliteMemoryDatabaseProvider.UnitTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -21,7 +21,7 @@
     </ItemGroup>
     
     <ItemGroup>
-        <ProjectReference Include="..\src\EntityFramework.SqliteMemoryDatabaseProvider.AutoMocker\EntityFramework.SqliteMemoryDatabaseProvider.AutoMocker.csproj" />
+        <ProjectReference Include="..\src\SqliteMemoryDatabaseProvider.AutoMocker\SqliteMemoryDatabaseProvider.AutoMocker.csproj" />
     </ItemGroup>
 
 </Project>

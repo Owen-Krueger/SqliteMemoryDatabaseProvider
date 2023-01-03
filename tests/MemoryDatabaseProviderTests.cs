@@ -2,7 +2,7 @@ using AutoFixture;
 using AutoFixture.AutoMoq;
 using NUnit.Framework;
 
-namespace EntityFramework.SqliteMemoryDatabaseProvider.UnitTests;
+namespace SqliteMemoryDatabaseProvider.UnitTests;
 
 internal class MemoryDatabaseProviderTests
 {

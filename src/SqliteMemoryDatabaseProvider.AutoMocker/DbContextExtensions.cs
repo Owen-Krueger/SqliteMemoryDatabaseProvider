@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace EntityFramework.SqliteMemoryDatabaseProvider.AutoMocker;
+namespace SqliteMemoryDatabaseProvider.AutoMocker;
 
 /// <summary>
 /// Extensions for a DbContext to handle in-memory databases.

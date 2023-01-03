@@ -1,4 +1,4 @@
-namespace EntityFramework.SqliteMemoryDatabaseProvider.UnitTests;
+namespace SqliteMemoryDatabaseProvider.UnitTests;
 
 internal class TestClass
 {

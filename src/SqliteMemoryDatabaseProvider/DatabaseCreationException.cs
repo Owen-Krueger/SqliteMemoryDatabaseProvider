@@ -1,4 +1,4 @@
-namespace EntityFramework.SqliteMemoryDatabaseProvider;
+namespace SqliteMemoryDatabaseProvider;
 
 /// <summary>
 /// Exception thrown when the in-memory database wasn't able to be created. See inner exception for more details.

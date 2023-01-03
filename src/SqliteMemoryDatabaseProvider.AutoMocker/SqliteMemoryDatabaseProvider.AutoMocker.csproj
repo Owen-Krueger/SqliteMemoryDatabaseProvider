@@ -7,9 +7,9 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>SQLite Memory Database Provider AutoMocker</Title>
         <Description>For creating in-memory SQLite databases to be used within unit tests using AutoMocker.</Description>
-        <Copyright>https://github.com/Owen-Krueger/EntityFramework.SqliteMemoryDatabaseProvider/blob/main/LICENSE</Copyright>
-        <PackageProjectUrl>https://github.com/Owen-Krueger/EntityFramework.SqliteMemoryDatabaseProvider</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/Owen-Krueger/EntityFramework.SqliteMemoryDatabaseProvider</RepositoryUrl>
+        <Copyright>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider/blob/main/LICENSE</Copyright>
+        <PackageProjectUrl>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider</RepositoryUrl>
         <PackageReleaseNotes>
             1.0.0 - Created CreateInMemoryDatabase for Automocker.
         </PackageReleaseNotes>
@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\EntityFramework.SqliteMemoryDatabaseProvider\EntityFramework.SqliteMemoryDatabaseProvider.csproj" />
+        <ProjectReference Include="..\SqliteMemoryDatabaseProvider\SqliteMemoryDatabaseProvider.csproj" />
     </ItemGroup>
 
 </Project>
