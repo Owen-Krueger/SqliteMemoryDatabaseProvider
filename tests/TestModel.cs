@@ -10,4 +10,10 @@ internal class TestModel
     public long ModelId { get; set; }
 
     public string OtherProperty { get; set; }
+    
+    public DateTimeOffset Date { get; set; }
+
+    public decimal Decimal { get; set; }
+    
+    public TimeSpan TimeSpan { get; set; }
 }

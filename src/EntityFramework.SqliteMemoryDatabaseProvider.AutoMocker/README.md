@@ -53,6 +53,16 @@ mock.CreateInMemoryDatabase<ITestEntities, TestEntities>(x => {
 var testClass = mock.CreateInstance<TestClass>();
 ```
 
+### SQLite Type Converters
+By default, [SQLite doesn't support certain types, such as DateTimeOffset, Decimal, and TimeSpan](https://learn.microsoft.com/en-us/ef/core/providers/sqlite/limitations#query-limitations). This package automatically sets up converters by these when setting up the SQLite database. You can choose to not utilize these converters by using an overload:
+
+``` C#
+using var provider = new SqliteMemoryDatabaseProvider();
+var mockDatabase = provider.CreateDatabase<TestEntities>(false, x =>
+    x.TestModels.Add(testRecord);
+);
+```
+
 ## Closing In-Memory Database Connections
 
 Although tests are short lived, it's still best practice to close database connections upon test completion.

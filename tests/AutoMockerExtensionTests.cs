@@ -74,4 +74,15 @@ public class AutoMockerExtensionTests
             var record = database.TestModels.First();
             Assert.That(record.Date, Is.EqualTo(testModelWithDate.Date));
         }
+        
+        [Test]
+        public void CreateInMemoryDatabase_DatabaseWithAllParameters_ParametersPassedToConstructor()
+        {
+            var mock = new Moq.AutoMock.AutoMocker();
+            var testModelWithDate = new TestModelWithDate() { Date = DateTimeOffset.Now };
+            var dateTimeConverterMock = mock.GetMock<IDateTimeConverter>();
+            var database = mock.CreateInMemoryDatabase<IComplexTestEntities, ComplexTestEntities>(false, x => x.TestModels.Add(testModelWithDate), dateTimeConverterMock.Object);
+            var record = database.TestModels.First();
+            Assert.That(record.Date, Is.EqualTo(testModelWithDate.Date));
+        }
 }
