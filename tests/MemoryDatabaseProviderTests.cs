@@ -8,7 +8,7 @@ internal class MemoryDatabaseProviderTests
 {
     private readonly TestModel testRecord = new() { OtherProperty = "Test" };
     private SqliteMemoryDatabaseProvider? sqliteMemoryDatabaseProvider;
-    private IFixture fixture;
+    private IFixture fixture = new Fixture();
 
     [SetUp]
     public void SetUp()
@@ -58,8 +58,11 @@ internal class MemoryDatabaseProviderTests
         var database = provider.CreateDatabase<TestEntities>();
         database.TestModels.Add(new TestModel() { OtherProperty = property });
         await database.SaveChangesAsync();
-        Assert.That(database.TestModels.Count(), Is.EqualTo(1));
-        Assert.That(database.TestModels.First().OtherProperty, Is.EqualTo(property));
+        Assert.Multiple(() =>
+        {
+            Assert.That(database.TestModels.Count(), Is.EqualTo(1));
+            Assert.That(database.TestModels.First().OtherProperty, Is.EqualTo(property));
+        });
     }
 
     [Test]
