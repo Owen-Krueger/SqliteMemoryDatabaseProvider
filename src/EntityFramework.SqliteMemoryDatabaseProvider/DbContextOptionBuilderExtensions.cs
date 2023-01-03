@@ -38,8 +38,8 @@ internal class SqliteContextCustomizer : RelationalModelCustomizer
         var properties = entityType
             .GetProperties()
             .Where(x => 
-                x.PropertyInfo.PropertyType == typeof(DateTimeOffset) || 
-                x.PropertyInfo.PropertyType == typeof(DateTimeOffset?));
+                x.PropertyInfo?.PropertyType == typeof(DateTimeOffset) || 
+                x.PropertyInfo?.PropertyType == typeof(DateTimeOffset?));
         foreach (var property in properties)
         {
             modelBuilder
@@ -50,14 +50,15 @@ internal class SqliteContextCustomizer : RelationalModelCustomizer
     }
     
     /// <summary>
-    /// Adds value converters for <see cref="decimal"/> types. 
+    /// Adds value converters for <see cref="decimal"/> types.
+    /// </summary>
     private static void AddDecimalConverters(IMutableEntityType entityType, ModelBuilder modelBuilder)
     {
         var properties = entityType
             .GetProperties()
             .Where(x => 
-                x.PropertyInfo.PropertyType == typeof(decimal) || 
-                x.PropertyInfo.PropertyType == typeof(decimal?));
+                x.PropertyInfo?.PropertyType == typeof(decimal) || 
+                x.PropertyInfo?.PropertyType == typeof(decimal?));
         foreach (var property in properties)
         {
             modelBuilder
@@ -75,8 +76,8 @@ internal class SqliteContextCustomizer : RelationalModelCustomizer
         var properties = entityType
             .GetProperties()
             .Where(x => 
-                x.PropertyInfo.PropertyType == typeof(TimeSpan) || 
-                x.PropertyInfo.PropertyType == typeof(TimeSpan?));
+                x.PropertyInfo?.PropertyType == typeof(TimeSpan) || 
+                x.PropertyInfo?.PropertyType == typeof(TimeSpan?));
         foreach (var property in properties)
         {
             modelBuilder
