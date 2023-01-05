@@ -17,73 +17,43 @@ internal class SqliteContextCustomizer : RelationalModelCustomizer
     public SqliteContextCustomizer(ModelCustomizerDependencies dependencies) : base(dependencies) { }
 
     /// <summary>
-    /// Extends the context's model builder, adding value converters for DateTimeOffset types.
+    /// Extends the context's model builder, adding value converters for DateTimeOffset, Decimal, and TimeSpan types.
     /// </summary>
     public override void Customize(ModelBuilder modelBuilder, DbContext context)
     {
         base.Customize(modelBuilder, context);
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
-            AddDateConverters(entityType, modelBuilder);
-            AddDecimalConverters(entityType, modelBuilder);
-            AddTimespanConverters(entityType, modelBuilder);
+            AddConverter<DateTimeOffset, long>(entityType, modelBuilder);
+            AddConverter<decimal, double>(entityType, modelBuilder);
+            AddConverter<TimeSpan, long>(entityType, modelBuilder);
         }
     }
 
     /// <summary>
-    /// Adds value converters for <see cref="DateTimeOffset"/> types. 
+    /// Adds converters from <see cref="TConvertFrom"/> to <see cref="TConvertTo"/> if a converter doesn't already exist.
     /// </summary>
-    private static void AddDateConverters(IMutableEntityType entityType, ModelBuilder modelBuilder)
+    /// <param name="entityType">Entity containing properties to add converters to.</param>
+    /// <param name="modelBuilder">Model builder configuration.</param>
+    /// <typeparam name="TConvertFrom">Type to convert when going from the database.</typeparam>
+    /// <typeparam name="TConvertTo">Type to convert when going to the database.</typeparam>
+    private static void AddConverter<TConvertFrom, TConvertTo>(IMutableEntityType entityType, ModelBuilder modelBuilder)
     {
         var properties = entityType
             .GetProperties()
             .Where(x => 
-                x.PropertyInfo?.PropertyType == typeof(DateTimeOffset) || 
-                x.PropertyInfo?.PropertyType == typeof(DateTimeOffset?));
+                x.PropertyInfo?.PropertyType == typeof(TConvertFrom) || 
+                x.PropertyInfo?.PropertyType == typeof(TConvertFrom?));
         foreach (var property in properties)
         {
-            modelBuilder
-                .Entity(entityType.Name)
-                .Property(property.Name)
-                .HasConversion(new DateTimeOffsetToBinaryConverter());
-        }
-    }
-    
-    /// <summary>
-    /// Adds value converters for <see cref="decimal"/> types.
-    /// </summary>
-    private static void AddDecimalConverters(IMutableEntityType entityType, ModelBuilder modelBuilder)
-    {
-        var properties = entityType
-            .GetProperties()
-            .Where(x => 
-                x.PropertyInfo?.PropertyType == typeof(decimal) || 
-                x.PropertyInfo?.PropertyType == typeof(decimal?));
-        foreach (var property in properties)
-        {
-            modelBuilder
-                .Entity(entityType.Name)
-                .Property(property.Name)
-                .HasConversion<double>();
-        }
-    }
-    
-    /// <summary>
-    /// Adds value converters for <see cref="TimeSpan"/> types. 
-    /// </summary>
-    private static void AddTimespanConverters(IMutableEntityType entityType, ModelBuilder modelBuilder)
-    {
-        var properties = entityType
-            .GetProperties()
-            .Where(x => 
-                x.PropertyInfo?.PropertyType == typeof(TimeSpan) || 
-                x.PropertyInfo?.PropertyType == typeof(TimeSpan?));
-        foreach (var property in properties)
-        {
-            modelBuilder
-                .Entity(entityType.Name)
-                .Property(property.Name)
-                .HasConversion(new TimeSpanToStringConverter());
+            var existingConverter = property.GetValueConverter();
+            if (existingConverter == null)
+            {
+                modelBuilder
+                    .Entity(entityType.Name)
+                    .Property(property.Name)
+                    .HasConversion<TConvertTo>();
+            }
         }
     }
 }

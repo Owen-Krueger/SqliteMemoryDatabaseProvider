@@ -11,9 +11,9 @@ public interface IDateTimeConverter
 
 internal class TestModelWithDate
 {
-    internal int Id { get; set; }
+    public int Id { get; set; }
 
-    internal DateTimeOffset Date { get; set; }
+    public DateTimeOffset Date { get; set; }
 }
 
 internal interface IComplexTestEntities

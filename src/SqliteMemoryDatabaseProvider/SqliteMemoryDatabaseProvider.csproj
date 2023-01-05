@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
         <Title>SQLite Memory Database Provider</Title>
         <Authors>Owen Krueger</Authors>
         <RootNamespace>SqliteMemoryDatabaseProvider</RootNamespace>
@@ -17,6 +17,7 @@
         <RepositoryUrl>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReleaseNotes>
+            1.0.2 - Refactor converters to parse DateTimeOffsets and TimeSpans to longs.
             1.0.1 - Fix converters not being applied to database.
             1.0.0 - Created SqliteMemoryDatabaseProvider.
         </PackageReleaseNotes>
