@@ -85,3 +85,7 @@ var database1 = mock.CreateInMemoryDatabase<ITestEntities1, TestEntities1>();
 var database2 = mock.CreateInMemoryDatabase<ITestEntities2, TestEntities2>();
 DbContextExtensions.CloseInMemoryDatabaseConnections(database1, database2);
 ```
+
+## Contribute
+
+If you encounter an issue or want to contribute to this package, please visit this package's [GitHub page](https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider).

@@ -130,3 +130,7 @@ public void TearDown()
     sqliteMemoryDatabaseProvider.Dispose();
 }
 ```
+
+## Contribute
+
+If you encounter an issue or want to contribute to this package, please visit this package's [GitHub page](https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider).
