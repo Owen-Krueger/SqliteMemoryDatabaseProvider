@@ -46,14 +46,10 @@ internal class SqliteContextCustomizer : RelationalModelCustomizer
                 x.PropertyInfo?.PropertyType == typeof(TConvertFrom?));
         foreach (var property in properties)
         {
-            var existingConverter = property.GetValueConverter();
-            if (existingConverter == null)
-            {
-                modelBuilder
-                    .Entity(entityType.Name)
-                    .Property(property.Name)
-                    .HasConversion<TConvertTo>();
-            }
+            modelBuilder
+                .Entity(entityType.Name)
+                .Property(property.Name)
+                .HasConversion<TConvertTo>();
         }
     }
 }

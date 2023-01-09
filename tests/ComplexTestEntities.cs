@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace SqliteMemoryDatabaseProvider.UnitTests;
@@ -9,7 +10,8 @@ public interface IDateTimeConverter
     public DateTimeOffset ConvertToDateTimeOffset(DateTime date);
 }
 
-internal class TestModelWithDate
+[Table("Table", Schema = "Schema")]
+public class TestModelWithDate
 {
     public int Id { get; set; }
 
