@@ -8,7 +8,7 @@ There are two packages offered within this repo:
 
 ## Requirements
 
-Using these packages requires the project to be on .NET 6.0 or newer. These packages can only be used with projects using EntityFramework version 6.x.x.
+Using these packages requires the project to be on .NET 6.0 or newer. These packages should only be used with projects using EntityFramework version 6.x.x.
 
 ## Contribute
 

@@ -1,6 +1,6 @@
 # SqliteMemoryDatabaseProvider
 
-This provider to aid with creating in-memory databases for unit tests. This package can only be used with projects using EntityFramework version 6.x.x.
+This provider to aid with creating in-memory databases for unit tests. This package should only be used with projects using EntityFramework version 6.x.x.
 
 ## Create Database
 
