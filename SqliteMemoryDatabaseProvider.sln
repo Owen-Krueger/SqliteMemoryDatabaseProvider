@@ -5,6 +5,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{FD55EDE4-D
 		README.md = README.md
 		.gitignore = .gitignore
 		LICENSE = LICENSE
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqliteMemoryDatabaseProvider.UnitTests", "tests\SqliteMemoryDatabaseProvider.UnitTests.csproj", "{A5CBCD79-F25C-4856-BA80-CB45BBE82564}"
