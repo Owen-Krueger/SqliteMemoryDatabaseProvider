@@ -30,7 +30,13 @@ jobs:
       shell: pwsh
 
     - name: Setup NuGet
-      uses: actions/setup-nuget@v1.0.5
+      uses: NuGet/setup-nuget@v1.2.0
+      
+    - name: Restore dependencies
+      run: nuget restore $SOLUTION
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
         
