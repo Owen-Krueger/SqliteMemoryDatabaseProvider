@@ -4,7 +4,7 @@
         <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>7.2.0</Version>
+        <Version>7.2.1</Version>
         <Title>SQLite Memory Database Provider</Title>
         <Authors>Owen Krueger</Authors>
         <RootNamespace>SqliteMemoryDatabaseProvider</RootNamespace>
@@ -16,7 +16,7 @@
         <PackageTags>EntityFramework;SQLite;Unit Test;Unit Testing;Database;DbContext</PackageTags>
         <RepositoryUrl>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider/releases/tag/v7.2.0</PackageReleaseNotes>
+        <PackageReleaseNotes>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider/releases/tag/v7.2.1</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
