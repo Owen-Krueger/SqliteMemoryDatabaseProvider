@@ -4,7 +4,7 @@
         <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>7.2.2</Version>
+        <Version>7.2.3</Version>
         <Title>SQLite Memory Database Provider AutoMocker</Title>
         <Authors>Owen Krueger</Authors>
         <RootNamespace>SqliteMemoryDatabaseProvider.AutoMocker</RootNamespace>
@@ -16,7 +16,7 @@
         <PackageTags>Moq;AutoMock;EntityFramework;SQLite;Unit Test;Unit Testing;Database;DbContext</PackageTags>
         <RepositoryUrl>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider/releases/tag/v7.2.2</PackageReleaseNotes>
+        <PackageReleaseNotes>https://github.com/Owen-Krueger/SqliteMemoryDatabaseProvider/releases/tag/v7.2.3</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
