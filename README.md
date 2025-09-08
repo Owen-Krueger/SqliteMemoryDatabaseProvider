@@ -10,7 +10,7 @@ There are two packages offered within this repo:
 
 ## Requirements
 
-Using these packages requires the project to be on .NET 6.0 or newer. These packages should only be used with projects using EntityFramework version 6.x.x or higher on .NET 6.0, version 7.x.x on .NET 7.0, or version 8.x.x on .NET 8.0.
+Using these packages requires the project to be on .NET 8.0 or newer. These packages should only be used with projects using EntityFramework version 8.x.x or higher on .NET 8.0, or version 9.x.x on .NET 9.0.
 
 ## Contribute
 
